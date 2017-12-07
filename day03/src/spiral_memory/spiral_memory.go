@@ -5,12 +5,13 @@ type Position struct {
   y int
 }
 
-func FindIndexWithGreaterCumulativeValueThan(min int) int {
+func FindValueWithGreaterCumulativeValueThan(min int) int {
   index := 2
   var rows [31][31] int
   cx := 15
   cy := 15
   rows[cx][cy] = 1
+  value := 0
   for {
     position := GridPosition(index)
     x := cx + position.x
@@ -22,12 +23,13 @@ func FindIndexWithGreaterCumulativeValueThan(min int) int {
       }
     }
     rows[x][y] = sum
+    value = sum
     if sum > min {
       break;
     }
     index++
   }
-  return index
+  return value
 }
 
 func GridDistance(index int) int {

@@ -71,22 +71,22 @@ func TestGridDistance(t *testing.T) {
 }
 
 func TestCumulativeValueFinding(t *testing.T) {
-  if FindIndexWithGreaterCumulativeValueThan(1) != 3 {
-    t.Errorf("Expected position 3 to have a value greater than 1")
+  if FindValueWithGreaterCumulativeValueThan(1) != 2 {
+    t.Errorf("Expected value 2 to have a value greater than 1")
   }
-  if FindIndexWithGreaterCumulativeValueThan(4) != 5 {
-    t.Errorf("Expected position 5 to have a value greater than 4")
+  if FindValueWithGreaterCumulativeValueThan(4) != 5 {
+    t.Errorf("Expected value 5 to have a value greater than 4")
   }
-  if FindIndexWithGreaterCumulativeValueThan(24) != 9 {
-    t.Errorf("Expected position 9 to have a value greater than 25")
+  if FindValueWithGreaterCumulativeValueThan(24) != 25 {
+    t.Errorf("Expected value 25 to have a value greater than 25")
   }
-  if FindIndexWithGreaterCumulativeValueThan(57) != 13 {
-    t.Errorf("Expected position 13 to have a value greater than 57")
+  if FindValueWithGreaterCumulativeValueThan(57) != 59 {
+    t.Errorf("Expected value 59 to have a value greater than 57")
   }
-  if FindIndexWithGreaterCumulativeValueThan(360) != 21 {
-    t.Errorf("Expected position 21 to have a value greater than 360")
+  if FindValueWithGreaterCumulativeValueThan(360) != 362 {
+    t.Errorf("Expected value 362 to have a value greater than 360")
   }
-  if FindIndexWithGreaterCumulativeValueThan(800) != 23 {
-    t.Errorf("Expected position 23 to have a value greater than 800")
+  if FindValueWithGreaterCumulativeValueThan(800) != 806 {
+    t.Errorf("Expected value 806 to have a value greater than 800")
   }
 }
