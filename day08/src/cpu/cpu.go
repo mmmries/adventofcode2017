@@ -36,15 +36,21 @@ func ParseInstructions(filename string) (*list.List,error) {
   return instructions, nil
 }
 
-func RunInstructions(instructions *list.List) map[string]int {
+func RunInstructions(instructions *list.List) (map[string]int, int) {
   registers := make(map[string]int)
+  max_register_value := -10000
   for e := instructions.Front(); e != nil; e = e.Next() {
     inst, _ := e.Value.(Instruction)
     if checkConditional(inst, registers) {
       execute(inst, registers)
+      for _, value := range registers {
+        if value > max_register_value {
+          max_register_value = value
+        }
+      }
     }
   }
-  return registers
+  return registers, max_register_value
 }
 
 func checkConditional(i Instruction, registers map[string]int) bool {
