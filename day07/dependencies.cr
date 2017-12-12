@@ -41,10 +41,13 @@ class Dependencies
     @root = root
   end
 
-  def add(node)
-    if @root.nil?
-      @root = node
+  def imbalanced_nodes(node = nil)
+    node ||= root
+    imbalanced = node.children.flat_map{|child| imbalanced_nodes(child).as(Array(Node)) }
+    if node.imbalanced?
+      imbalanced << node
     end
+    imbalanced
   end
 end
 
@@ -56,5 +59,22 @@ class Node
 
   def initialize(@name, @weight, @child_names)
     @children = [] of Node
+  end
+
+  def imbalanced?
+    child_weights = children.map{|node| node.total_weight }
+    child_weights.any?{|weight| child_weights.find{|other_weight| weight != other_weight } }
+  end
+
+  def print(prefix = "")
+    puts "#{prefix}#{name} -> (#{weight}/#{total_weight})"
+    children.each do |child|
+      child.print(prefix + "  ")
+    end
+  end
+
+  def total_weight
+    weight_of_children = children.map{|node| node.total_weight.as(Int32) }.reduce(0){|sum, total_weight| sum + total_weight }
+    weight + weight_of_children
   end
 end
