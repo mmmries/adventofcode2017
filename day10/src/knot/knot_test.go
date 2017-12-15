@@ -40,6 +40,29 @@ func TestSimpleKnot(t *testing.T) {
   }
 }
 
+func TestGeneratingHashes(t *testing.T) {
+  hash := Hash("")
+  expected := "a2582a3a0e66e6e86e3812dcb672a272"
+  if hash != expected {
+    t.Errorf("got %v but expected %v", hash, expected)
+  }
+  hash = Hash("AoC 2017")
+  expected = "33efeb34ea91902bb2f59c9920caa6cd"
+  if hash != expected {
+    t.Errorf("got %v but expected %v", hash, expected)
+  }
+  hash = Hash("1,2,3")
+  expected = "3efbe78a8d82f29979031a4aa0b16a9d"
+  if hash != expected {
+    t.Errorf("got %v but expected %v", hash, expected)
+  }
+  hash = Hash("1,2,4")
+  expected = "63960835bcdc130f0b66d7ff4f6a5a8e"
+  if hash != expected {
+    t.Errorf("got %v but expected %v", hash, expected)
+  }
+}
+
 func IntArrayEquals(a []int, b []int) bool {
     if len(a) != len(b) {
         return false

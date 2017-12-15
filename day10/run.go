@@ -12,4 +12,8 @@ func main() {
   }
   numbers := knot.Numbers(k)
   fmt.Println("\tanswer = ",numbers[0] * numbers[1])
+
+  fmt.Println("Part2 - Generating Dense Hashes")
+  input := "206,63,255,131,65,80,238,157,254,24,133,2,16,0,1,3"
+  fmt.Println("\t",input," => ",knot.Hash(input))
 }
